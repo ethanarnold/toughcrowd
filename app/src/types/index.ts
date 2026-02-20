@@ -21,6 +21,7 @@ export interface Slide {
   number: number
   textContent: string
   visualDescription: string
+  imageUrl: string
 }
 
 // Transcript segment
@@ -66,7 +67,8 @@ export function isSlide(value: unknown): value is Slide {
   return (
     typeof obj.number === 'number' &&
     typeof obj.textContent === 'string' &&
-    typeof obj.visualDescription === 'string'
+    typeof obj.visualDescription === 'string' &&
+    typeof obj.imageUrl === 'string'
   )
 }
 

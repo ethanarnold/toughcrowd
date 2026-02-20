@@ -1,30 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { FileUpload } from './components/FileUpload'
+import { SlideViewer } from './components/SlideViewer'
+import { useSessionStore } from './stores/session'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { slides, pdfFile, resetSession } = useSessionStore()
+  const hasSlides = slides.length > 0
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="bg-white border-b border-gray-200 px-6 py-4">
+        <div className="max-w-6xl mx-auto flex items-center justify-between">
+          <h1 className="text-xl font-semibold text-gray-800">toughcrowd</h1>
+          {hasSlides && (
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-gray-500">{pdfFile?.name}</span>
+              <button
+                onClick={resetSession}
+                className="px-3 py-1 text-sm text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded"
+              >
+                Upload New
+              </button>
+            </div>
+          )}
+        </div>
+      </header>
+
+      {/* Main content */}
+      <main className="max-w-6xl mx-auto px-6 py-8">
+        {hasSlides ? (
+          <div className="h-[calc(100vh-200px)]">
+            <SlideViewer />
+          </div>
+        ) : (
+          <div className="max-w-xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+                Practice Your Presentation
+              </h2>
+              <p className="text-gray-600">
+                Upload your slides to start practicing with AI-generated questions
+              </p>
+            </div>
+            <FileUpload />
+          </div>
+        )}
+      </main>
+    </div>
   )
 }
 

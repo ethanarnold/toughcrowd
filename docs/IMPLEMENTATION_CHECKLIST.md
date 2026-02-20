@@ -1,4 +1,4 @@
-# PresentationPrepper Implementation Checklist
+# toughcrowd Implementation Checklist
 
 > **Testing Policy:** Write tests FIRST. Maintain 80%+ code coverage on every merge.
 

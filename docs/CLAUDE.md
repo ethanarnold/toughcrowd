@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-PresentationPrepper is an AI-powered real-time presentation practice tool. It simulates an audience or committee member listening to a talk, generating contextual questions based on live speech and slide content.
+toughcrowd is an AI-powered real-time presentation practice tool. It simulates an audience or committee member listening to a talk, generating contextual questions based on live speech and slide content.
 
 ## Tech Stack (Planned)
 

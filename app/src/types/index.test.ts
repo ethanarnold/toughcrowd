@@ -21,6 +21,7 @@ describe('Type Guards', () => {
         number: 1,
         textContent: 'Introduction to AI',
         visualDescription: 'Title slide with company logo',
+        imageUrl: 'data:image/png;base64,test',
       }
       expect(isSlide(validSlide)).toBe(true)
     })
@@ -43,6 +44,7 @@ describe('Type Guards', () => {
       expect(isSlide({ number: 1 })).toBe(false)
       expect(isSlide({ number: 1, textContent: 'text' })).toBe(false)
       expect(isSlide({ textContent: 'text', visualDescription: 'desc' })).toBe(false)
+      expect(isSlide({ number: 1, textContent: 'text', visualDescription: 'desc' })).toBe(false)
     })
 
     it('returns false for objects with wrong property types', () => {
@@ -195,8 +197,8 @@ describe('Type Guards', () => {
       const validSession: Session = {
         id: 'session-1',
         slides: [
-          { number: 1, textContent: 'Intro', visualDescription: 'Title' },
-          { number: 2, textContent: 'Methods', visualDescription: 'Diagram' },
+          { number: 1, textContent: 'Intro', visualDescription: 'Title', imageUrl: '' },
+          { number: 2, textContent: 'Methods', visualDescription: 'Diagram', imageUrl: '' },
         ],
         transcript: [{ text: 'Hello everyone', timestamp: 0, slideNumber: 1 }],
         questions: [

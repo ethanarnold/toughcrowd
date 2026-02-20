@@ -1,9 +1,9 @@
-# PresentationPrepper
+# toughcrowd
 
 AI-powered real-time presentation practice tool that simulates an audience member listening to your talk and generating contextual questions.
 
-[![CI](https://github.com/YOUR_USERNAME/presentationprepper/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/presentationprepper/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/YOUR_USERNAME/presentationprepper/branch/main/graph/badge.svg)](https://codecov.io/gh/YOUR_USERNAME/presentationprepper)
+[![CI](https://github.com/YOUR_USERNAME/toughcrowd/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/toughcrowd/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/YOUR_USERNAME/toughcrowd/branch/main/graph/badge.svg)](https://codecov.io/gh/YOUR_USERNAME/toughcrowd)
 
 ## Getting Started
 

@@ -1,4 +1,4 @@
-# PresentationPrepper
+# toughcrowd
 
 An AI-powered tool that simulates a realistic audience listening to your presentation in real time. As you practice, the AI generates contextual questions based on what you're saying and the slides you're showing—just like a real Q&A session.
 
