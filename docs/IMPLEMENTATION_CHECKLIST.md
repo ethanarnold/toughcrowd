@@ -4,77 +4,77 @@
 
 ---
 
-## Phase 0: Project Setup & Testing Infrastructure
+## Phase 0: Project Setup & Testing Infrastructure ✅
 
 ### Project Initialization
-- [ ] Initialize Vite + React + TypeScript project
-- [ ] Configure Tailwind CSS
-- [ ] Set up ESLint and Prettier
-- [ ] Create folder structure (components, hooks, services, stores, types, utils)
-- [ ] Add `.env.example` with required variables
-- [ ] Add `.env` and `.env.local` to `.gitignore`
+- [x] Initialize Vite + React + TypeScript project
+- [x] Configure Tailwind CSS
+- [x] Set up ESLint and Prettier
+- [x] Create folder structure (components, hooks, services, stores, types, utils)
+- [x] Add `.env.example` with required variables
+- [x] Add `.env` and `.env.local` to `.gitignore`
 
 ### Testing Infrastructure
-- [ ] Install Vitest (unit/integration testing)
-- [ ] Install React Testing Library
-- [ ] Install MSW (Mock Service Worker) for API mocking
-- [ ] Configure coverage thresholds (80% minimum)
-- [ ] Add test scripts to package.json (`test`, `test:coverage`, `test:watch`)
-- [ ] Set up CI workflow (GitHub Actions) to run tests on PR
-- [ ] Add coverage badge to README
+- [x] Install Vitest (unit/integration testing)
+- [x] Install React Testing Library
+- [x] Install MSW (Mock Service Worker) for API mocking
+- [x] Configure coverage thresholds (80% minimum)
+- [x] Add test scripts to package.json (`test`, `test:coverage`, `test:watch`)
+- [x] Set up CI workflow (GitHub Actions) to run tests on PR
+- [x] Add coverage badge to README (via Codecov)
 
 ### TypeScript Interfaces
-- [ ] Write tests for type guards and validators
-- [ ] Define `Slide` interface (number, textContent, visualDescription)
-- [ ] Define `TranscriptSegment` interface (text, timestamp, slideNumber)
-- [ ] Define `Question` interface (text, type, urgency, trigger, slideRef)
-- [ ] Define `Session` interface (slides, transcript, questions, settings)
-- [ ] Define `Persona` type (skeptical | expert | confused | adversarial)
-- [ ] Define `DeliveryMode` type (interrupt | queue | hybrid)
+- [x] Write tests for type guards and validators
+- [x] Define `Slide` interface (number, textContent, visualDescription)
+- [x] Define `TranscriptSegment` interface (text, timestamp, slideNumber)
+- [x] Define `Question` interface (text, type, urgency, trigger, slideRef)
+- [x] Define `Session` interface (slides, transcript, questions, settings)
+- [x] Define `Persona` type (skeptical | expert | confused | adversarial)
+- [x] Define `DeliveryMode` type (interrupt | queue | hybrid)
 
 ---
 
-## Phase 1: Foundation (PDF + Slide Viewer)
+## Phase 1: Foundation (PDF + Slide Viewer) ✅
 
 ### PDF Processing Service
-- [ ] Write unit tests for PDF validation (MIME type, magic bytes, size)
-- [ ] Write unit tests for text extraction per page
-- [ ] Write unit tests for error handling (corrupt PDF, empty PDF)
-- [ ] Implement `validatePDF()` - check type, magic bytes, size limit
-- [ ] Implement `extractTextFromPDF()` - return array of page text
-- [ ] Implement `sanitizeFilename()` - strip path traversal chars
+- [x] Write unit tests for PDF validation (MIME type, magic bytes, size)
+- [x] Write unit tests for text extraction per page
+- [x] Write unit tests for error handling (corrupt PDF, empty PDF)
+- [x] Implement `validatePDF()` - check type, magic bytes, size limit
+- [x] Implement `extractTextFromPDF()` - return array of page text
+- [x] Implement `sanitizeFilename()` - strip path traversal chars
 
 ### PDF Upload Component
-- [ ] Write component tests for drag-and-drop upload
-- [ ] Write component tests for file validation feedback
-- [ ] Write component tests for upload progress indicator
-- [ ] Implement `FileUpload` component with drag-and-drop zone
-- [ ] Add file type validation with user feedback
-- [ ] Add file size validation (50MB limit)
-- [ ] Add loading state during processing
+- [x] Write component tests for drag-and-drop upload
+- [x] Write component tests for file validation feedback
+- [x] Write component tests for upload progress indicator
+- [x] Implement `FileUpload` component with drag-and-drop zone
+- [x] Add file type validation with user feedback
+- [x] Add file size validation (50MB limit)
+- [x] Add loading state during processing
 
 ### Slide Viewer Component
-- [ ] Write component tests for slide rendering
-- [ ] Write component tests for navigation (prev/next/keyboard)
-- [ ] Write component tests for slide indicator display
-- [ ] Implement `SlideViewer` component with PDF rendering
-- [ ] Add prev/next navigation buttons
-- [ ] Add keyboard shortcuts (arrow keys)
-- [ ] Add slide indicator ("Slide 3 of 12")
-- [ ] Add jump-to-slide dropdown
+- [x] Write component tests for slide rendering
+- [x] Write component tests for navigation (prev/next/keyboard)
+- [x] Write component tests for slide indicator display
+- [x] Implement `SlideViewer` component with PDF rendering
+- [x] Add prev/next navigation buttons
+- [x] Add keyboard shortcuts (arrow keys)
+- [x] Add slide indicator ("Slide 3 of 12")
+- [x] Add jump-to-slide dropdown
 
 ### Session Store (Zustand)
-- [ ] Write unit tests for store actions
-- [ ] Write unit tests for state selectors
-- [ ] Implement `useSessionStore` with slides state
-- [ ] Add actions: `setSlides`, `setCurrentSlide`, `resetSession`
-- [ ] Add selectors: `getCurrentSlide`, `getSlideContent`
+- [x] Write unit tests for store actions
+- [x] Write unit tests for state selectors
+- [x] Implement `useSessionStore` with slides state
+- [x] Add actions: `setSlides`, `setCurrentSlide`, `resetSession`
+- [x] Add selectors: `getCurrentSlide`, `getSlideContent`
 
 ### Phase 1 Integration
-- [ ] Write E2E test: upload PDF → view slides → navigate
-- [ ] Verify text extraction accessible per slide
-- [ ] Test with various PDF formats (text-heavy, image-heavy, mixed)
-- [ ] **Verify 80%+ coverage before proceeding**
+- [x] Write E2E test: upload PDF → view slides → navigate
+- [x] Verify text extraction accessible per slide
+- [x] Test with various PDF formats (text-heavy, image-heavy, mixed)
+- [x] **Verify 80%+ coverage before proceeding**
 
 ---
 
@@ -282,14 +282,14 @@
 ## Security Checklist
 
 ### Phase 0 Security
-- [ ] Add `.env` files to `.gitignore`
-- [ ] Document required environment variables
+- [x] Add `.env` files to `.gitignore`
+- [x] Document required environment variables
 
 ### Phase 1 Security
-- [ ] Validate PDF MIME type
-- [ ] Validate PDF magic bytes (`%PDF-`)
-- [ ] Enforce 50MB file size limit
-- [ ] Sanitize uploaded filenames
+- [x] Validate PDF MIME type
+- [x] Validate PDF magic bytes (`%PDF-`)
+- [x] Enforce 50MB file size limit
+- [x] Sanitize uploaded filenames
 
 ### Phase 2 Security
 - [ ] Handle microphone permission gracefully
@@ -318,10 +318,10 @@
 
 ## CI/CD Checklist
 
-- [ ] GitHub Actions workflow for tests on PR
-- [ ] Coverage check (fail if < 80%)
-- [ ] ESLint check (fail on errors)
-- [ ] TypeScript check (fail on errors)
+- [x] GitHub Actions workflow for tests on PR
+- [x] Coverage check (fail if < 80%)
+- [x] ESLint check (fail on errors)
+- [x] TypeScript check (fail on errors)
 - [ ] Vercel preview deployments on PR
 - [ ] Vercel production deployment on main merge
 

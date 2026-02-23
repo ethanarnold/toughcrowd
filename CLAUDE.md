@@ -58,6 +58,7 @@ app/src/
 - **Environment variables**: Use `VITE_` prefix for client-side vars (see `app/.env.example`)
 - **Type guards**: Use existing type guards in `src/types/index.ts` (e.g., `isSlide()`, `isQuestion()`)
 - **PR workflow**: Use GitHub pull requests for all changes. Create feature branches, open PRs for review, and merge to main
+- **Checklist updates**: After a PR is merged, update `docs/IMPLEMENTATION_CHECKLIST.md` to mark completed items as done
 
 ## Code Style
 
@@ -71,7 +72,7 @@ Enforced by ESLint + Prettier:
 
 Current status tracked in `docs/IMPLEMENTATION_CHECKLIST.md`:
 - Phase 0 (Complete): Project setup, testing infrastructure, type definitions
-- Phase 1: PDF upload, slide viewer, session store
+- Phase 1 (Complete): PDF upload, slide viewer, session store
 - Phase 2: Transcript pipeline, speech-to-text
 - Phase 3: Question generation loop, LLM integration
 - Phase 4: Interactive Q&A UI, delivery modes, persona system
