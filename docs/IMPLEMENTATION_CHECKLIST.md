@@ -78,54 +78,54 @@
 
 ---
 
-## Phase 2: Transcript Pipeline (Speech-to-Text)
+## Phase 2: Transcript Pipeline (Speech-to-Text) ✅
 
 ### Speech Recognition Hook
-- [ ] Write unit tests for hook state management
-- [ ] Write unit tests for browser compatibility detection
-- [ ] Write unit tests for error handling
-- [ ] Implement `useSpeechToText` hook
-- [ ] Handle start/stop/pause recognition
-- [ ] Implement continuous recognition mode
-- [ ] Add browser compatibility check (Chrome detection)
-- [ ] Add graceful fallback messaging for unsupported browsers
+- [x] Write unit tests for hook state management
+- [x] Write unit tests for browser compatibility detection
+- [x] Write unit tests for error handling
+- [x] Implement `useSpeechToText` hook
+- [x] Handle start/stop/pause recognition
+- [x] Implement continuous recognition mode
+- [x] Add browser compatibility check (Chrome detection)
+- [x] Add graceful fallback messaging for unsupported browsers
 
 ### Transcript Management
-- [ ] Write unit tests for rolling buffer (60s window)
-- [ ] Write unit tests for timestamp association
-- [ ] Write unit tests for segment creation
-- [ ] Implement rolling buffer logic (keep last 60s)
-- [ ] Implement cumulative transcript with timestamps
-- [ ] Implement segment boundary detection
+- [x] Write unit tests for rolling buffer (60s window)
+- [x] Write unit tests for timestamp association
+- [x] Write unit tests for segment creation
+- [x] Implement rolling buffer logic (keep last 60s)
+- [x] Implement cumulative transcript with timestamps
+- [x] Implement segment boundary detection
 
 ### Transcript Panel Component
-- [ ] Write component tests for real-time updates
-- [ ] Write component tests for auto-scroll behavior
-- [ ] Write component tests for listening indicator
-- [ ] Implement `TranscriptPanel` component
-- [ ] Add real-time transcript display
-- [ ] Add auto-scroll to latest content
-- [ ] Add visual "listening" indicator
-- [ ] Add timestamp display per segment
+- [x] Write component tests for real-time updates
+- [x] Write component tests for auto-scroll behavior
+- [x] Write component tests for listening indicator
+- [x] Implement `TranscriptPanel` component
+- [x] Add real-time transcript display
+- [x] Add auto-scroll to latest content
+- [x] Add visual "listening" indicator
+- [x] Add timestamp display per segment
 
 ### Slide Transition Tracking
-- [ ] Write unit tests for transition logging
-- [ ] Write unit tests for transcript-slide association
-- [ ] Implement slide change event tracking
-- [ ] Associate transcript segments with slide numbers
-- [ ] Log slide timing for session summary
+- [x] Write unit tests for transition logging
+- [x] Write unit tests for transcript-slide association
+- [x] Implement slide change event tracking
+- [x] Associate transcript segments with slide numbers
+- [x] Log slide timing for session summary
 
 ### Session Store Updates
-- [ ] Add transcript state to store
-- [ ] Add actions: `addTranscriptSegment`, `clearTranscript`
-- [ ] Add selectors: `getRecentTranscript`, `getFullTranscript`
+- [x] Add transcript state to store
+- [x] Add actions: `addTranscriptSegment`, `clearTranscript`
+- [x] Add selectors: `getRecentTranscript`, `getFullTranscript`
 
 ### Phase 2 Integration
-- [ ] Write E2E test: start session → speak → see transcript
-- [ ] Test microphone permission flow
-- [ ] Test pause/resume recognition
-- [ ] Test slide transition tracking
-- [ ] **Verify 80%+ coverage before proceeding**
+- [x] Write E2E test: start session → speak → see transcript
+- [x] Test microphone permission flow
+- [x] Test pause/resume recognition
+- [x] Test slide transition tracking
+- [x] **Verify 80%+ coverage before proceeding**
 
 ---
 
@@ -292,9 +292,9 @@
 - [x] Sanitize uploaded filenames
 
 ### Phase 2 Security
-- [ ] Handle microphone permission gracefully
-- [ ] Ensure audio stays in browser (Web Speech API)
-- [ ] No server transmission of raw audio
+- [x] Handle microphone permission gracefully
+- [x] Ensure audio stays in browser (Web Speech API)
+- [x] No server transmission of raw audio
 
 ### Phase 3 Security
 - [ ] API keys only in server-side routes
@@ -359,4 +359,4 @@ npm run test:ui       # Vitest UI
 
 ---
 
-*Last updated: 2026-02-20*
+*Last updated: 2026-02-22*

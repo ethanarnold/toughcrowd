@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { useSessionStore, createInitialState } from './session'
-import type { Slide } from '../types'
+import type { Slide, TranscriptSegment } from '../types'
 
 describe('Session Store', () => {
   beforeEach(() => {
@@ -280,6 +280,188 @@ describe('Session Store', () => {
       it('returns 0 for empty slides', () => {
         expect(useSessionStore.getState().getTotalSlides()).toBe(0)
       })
+    })
+  })
+
+  // Phase 2: Transcript State Tests
+  describe('transcript state', () => {
+    describe('initial state', () => {
+      it('has empty transcript array', () => {
+        const state = useSessionStore.getState()
+        expect(state.transcript).toEqual([])
+      })
+
+      it('has isRecording false', () => {
+        const state = useSessionStore.getState()
+        expect(state.isRecording).toBe(false)
+      })
+    })
+
+    describe('addTranscriptSegment', () => {
+      it('adds a segment to the transcript', () => {
+        const segment: TranscriptSegment = {
+          text: 'Hello world',
+          timestamp: 1000,
+          slideNumber: 1,
+        }
+
+        useSessionStore.getState().addTranscriptSegment(segment)
+
+        expect(useSessionStore.getState().transcript).toHaveLength(1)
+        expect(useSessionStore.getState().transcript[0]).toEqual(segment)
+      })
+
+      it('appends multiple segments in order', () => {
+        const segment1: TranscriptSegment = {
+          text: 'First',
+          timestamp: 1000,
+          slideNumber: 1,
+        }
+        const segment2: TranscriptSegment = {
+          text: 'Second',
+          timestamp: 2000,
+          slideNumber: 1,
+        }
+
+        useSessionStore.getState().addTranscriptSegment(segment1)
+        useSessionStore.getState().addTranscriptSegment(segment2)
+
+        expect(useSessionStore.getState().transcript).toHaveLength(2)
+        expect(useSessionStore.getState().transcript[0].text).toBe('First')
+        expect(useSessionStore.getState().transcript[1].text).toBe('Second')
+      })
+    })
+
+    describe('clearTranscript', () => {
+      it('clears all transcript segments', () => {
+        const segment: TranscriptSegment = {
+          text: 'Some text',
+          timestamp: 1000,
+          slideNumber: 1,
+        }
+        useSessionStore.getState().addTranscriptSegment(segment)
+        expect(useSessionStore.getState().transcript).toHaveLength(1)
+
+        useSessionStore.getState().clearTranscript()
+
+        expect(useSessionStore.getState().transcript).toEqual([])
+      })
+    })
+
+    describe('setIsRecording', () => {
+      it('sets recording state to true', () => {
+        useSessionStore.getState().setIsRecording(true)
+        expect(useSessionStore.getState().isRecording).toBe(true)
+      })
+
+      it('sets recording state to false', () => {
+        useSessionStore.setState({ isRecording: true })
+        useSessionStore.getState().setIsRecording(false)
+        expect(useSessionStore.getState().isRecording).toBe(false)
+      })
+    })
+
+    describe('getRecentTranscript', () => {
+      it('returns segments within the specified time window', () => {
+        const now = Date.now()
+        const segments: TranscriptSegment[] = [
+          { text: 'Old segment', timestamp: now - 70000, slideNumber: 1 }, // 70 seconds ago
+          { text: 'Recent segment 1', timestamp: now - 30000, slideNumber: 1 }, // 30 seconds ago
+          { text: 'Recent segment 2', timestamp: now - 10000, slideNumber: 2 }, // 10 seconds ago
+        ]
+        segments.forEach((s) => useSessionStore.getState().addTranscriptSegment(s))
+
+        const recent = useSessionStore.getState().getRecentTranscript(60000) // 60 seconds
+
+        expect(recent).toHaveLength(2)
+        expect(recent[0].text).toBe('Recent segment 1')
+        expect(recent[1].text).toBe('Recent segment 2')
+      })
+
+      it('returns empty array when no segments in window', () => {
+        const now = Date.now()
+        const segment: TranscriptSegment = {
+          text: 'Very old',
+          timestamp: now - 120000, // 2 minutes ago
+          slideNumber: 1,
+        }
+        useSessionStore.getState().addTranscriptSegment(segment)
+
+        const recent = useSessionStore.getState().getRecentTranscript(60000)
+
+        expect(recent).toEqual([])
+      })
+
+      it('returns all segments when all are within window', () => {
+        const now = Date.now()
+        const segments: TranscriptSegment[] = [
+          { text: 'Segment 1', timestamp: now - 5000, slideNumber: 1 },
+          { text: 'Segment 2', timestamp: now - 3000, slideNumber: 1 },
+          { text: 'Segment 3', timestamp: now - 1000, slideNumber: 1 },
+        ]
+        segments.forEach((s) => useSessionStore.getState().addTranscriptSegment(s))
+
+        const recent = useSessionStore.getState().getRecentTranscript(60000)
+
+        expect(recent).toHaveLength(3)
+      })
+    })
+
+    describe('getFullTranscript', () => {
+      it('returns all transcript segments', () => {
+        const segments: TranscriptSegment[] = [
+          { text: 'Segment 1', timestamp: 1000, slideNumber: 1 },
+          { text: 'Segment 2', timestamp: 2000, slideNumber: 2 },
+          { text: 'Segment 3', timestamp: 3000, slideNumber: 2 },
+        ]
+        segments.forEach((s) => useSessionStore.getState().addTranscriptSegment(s))
+
+        const full = useSessionStore.getState().getFullTranscript()
+
+        expect(full).toHaveLength(3)
+        expect(full).toEqual(segments)
+      })
+
+      it('returns empty array when no segments exist', () => {
+        const full = useSessionStore.getState().getFullTranscript()
+        expect(full).toEqual([])
+      })
+    })
+
+    describe('getTranscriptText', () => {
+      it('returns combined text from all segments', () => {
+        const segments: TranscriptSegment[] = [
+          { text: 'Hello', timestamp: 1000, slideNumber: 1 },
+          { text: 'world', timestamp: 2000, slideNumber: 1 },
+        ]
+        segments.forEach((s) => useSessionStore.getState().addTranscriptSegment(s))
+
+        const text = useSessionStore.getState().getTranscriptText()
+
+        expect(text).toBe('Hello world')
+      })
+
+      it('returns empty string when no segments', () => {
+        const text = useSessionStore.getState().getTranscriptText()
+        expect(text).toBe('')
+      })
+    })
+  })
+
+  describe('resetSession with transcript', () => {
+    it('clears transcript when resetting session', () => {
+      const segment: TranscriptSegment = {
+        text: 'Some transcript',
+        timestamp: 1000,
+        slideNumber: 1,
+      }
+      useSessionStore.getState().addTranscriptSegment(segment)
+      useSessionStore.getState().setIsRecording(true)
+
+      useSessionStore.getState().resetSession()
+
+      expect(useSessionStore.getState().transcript).toEqual([])
+      expect(useSessionStore.getState().isRecording).toBe(false)
     })
   })
 })
