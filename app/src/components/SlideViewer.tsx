@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useState } from 'react'
+import { useEffect, useCallback } from 'react'
 import { useSessionStore } from '../stores/session'
 
 export function SlideViewer() {
@@ -15,14 +15,8 @@ export function SlideViewer() {
   const currentSlide = getCurrentSlide()
   const totalSlides = getTotalSlides()
 
-  const [isTextSidebarOpen, setIsTextSidebarOpen] = useState(false)
-
   const isFirstSlide = currentSlideIndex === 0
   const isLastSlide = currentSlideIndex === totalSlides - 1
-
-  const toggleTextSidebar = useCallback(() => {
-    setIsTextSidebarOpen((prev) => !prev)
-  }, [])
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
@@ -75,58 +69,20 @@ export function SlideViewer() {
 
   return (
     <div className="flex flex-col h-full">
-      {/* Main content area with slide image and collapsible sidebar */}
-      <div className="flex-1 flex gap-4 mb-4 min-h-0">
-        {/* Slide image area */}
-        <div
-          data-testid="slide-content"
-          className="flex-1 bg-gray-100 border border-gray-200 rounded-lg overflow-auto flex items-center justify-center"
-        >
-          {currentSlide?.imageUrl ? (
-            <img
-              src={currentSlide.imageUrl}
-              alt={`Slide ${currentSlide.number}`}
-              className="max-w-full max-h-full object-contain"
-            />
-          ) : (
-            <div className="text-gray-400">No image available</div>
-          )}
-        </div>
-
-        {/* Collapsible text sidebar */}
-        <div
-          className={`
-            flex flex-col bg-white border border-gray-200 rounded-lg transition-all duration-300
-            ${isTextSidebarOpen ? 'w-80' : 'w-10'}
-          `}
-        >
-          {/* Toggle button */}
-          <button
-            onClick={toggleTextSidebar}
-            aria-label={isTextSidebarOpen ? 'Collapse text sidebar' : 'Expand text sidebar'}
-            className="p-2 hover:bg-gray-100 rounded-t-lg border-b border-gray-200 flex items-center justify-center"
-          >
-            <svg
-              className={`h-5 w-5 text-gray-600 transition-transform ${isTextSidebarOpen ? 'rotate-0' : 'rotate-180'}`}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-
-          {/* Text content */}
-          {isTextSidebarOpen && (
-            <div className="flex-1 overflow-auto p-4">
-              <h3 className="text-sm font-semibold text-gray-700 mb-2">Extracted Text</h3>
-              <p className="text-sm text-gray-600 whitespace-pre-wrap">
-                {currentSlide?.textContent || 'No text extracted from this slide.'}
-              </p>
-            </div>
-          )}
-        </div>
+      {/* Slide image area */}
+      <div
+        data-testid="slide-content"
+        className="flex-1 bg-gray-100 border border-gray-200 rounded-lg overflow-auto flex items-center justify-center mb-4 min-h-0"
+      >
+        {currentSlide?.imageUrl ? (
+          <img
+            src={currentSlide.imageUrl}
+            alt={`Slide ${currentSlide.number}`}
+            className="max-w-full max-h-full object-contain"
+          />
+        ) : (
+          <div className="text-gray-400">No image available</div>
+        )}
       </div>
 
       {/* Navigation controls */}
