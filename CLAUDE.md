@@ -54,11 +54,34 @@ app/src/
 
 ## Development Guidelines
 
-- **TDD approach**: Write tests first, maintain 80%+ coverage on every merge
 - **Environment variables**: Use `VITE_` prefix for client-side vars (see `app/.env.example`)
 - **Type guards**: Use existing type guards in `src/types/index.ts` (e.g., `isSlide()`, `isQuestion()`)
 - **PR workflow**: Use GitHub pull requests for all changes. Create feature branches, open PRs for review, and merge to main
 - **Checklist updates**: After a PR is merged, update `docs/IMPLEMENTATION_CHECKLIST.md` to mark completed items as done
+
+## Testing & TDD
+
+**Strict Red-Green-Refactor workflow:**
+- Never write implementation without a failing test first
+- One test at a time: Write ONE failing test, write minimal code to pass it, refactor. Repeat
+- Never rewrite a failing test to make it pass — fix the implementation instead
+
+**Test design principles:**
+- Test behavior through public interfaces, not implementation details. Tests describe WHAT, not HOW
+- Avoid over-mocking. If a test mocks the database, API client, auth, and filesystem, it tests nothing
+- Use AAA pattern (Arrange-Act-Assert) or Given-When-Then
+- Test names describe behavior: `should_reject_expired_token` not `test_token_3`
+
+**Coverage requirements:**
+- Target: 80% (enforced by vitest thresholds). Don't chase 100% with meaningless assertions
+- Prioritize coverage for: auth, payments/billing, data integrity, core business logic
+
+**When modifying code:**
+- When modifying existing functions, ensure a test exists first. Create one if it doesn't, then modify
+
+## TDD Session Reminder
+
+When asked to implement a feature, always respond by writing a failing test first. Do not write implementation code until the test exists and fails
 
 ## Code Style
 
