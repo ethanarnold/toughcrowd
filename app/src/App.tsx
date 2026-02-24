@@ -1,5 +1,6 @@
 import { FileUpload } from './components/FileUpload'
 import { SlideViewer } from './components/SlideViewer'
+import { TranscriptPanel } from './components/TranscriptPanel'
 import { useSessionStore } from './stores/session'
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white border-b border-gray-200 px-6 py-4">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
           <h1 className="text-xl font-semibold text-gray-800">toughcrowd</h1>
           {hasSlides && (
             <div className="flex items-center gap-4">
@@ -27,10 +28,17 @@ function App() {
       </header>
 
       {/* Main content */}
-      <main className="max-w-6xl mx-auto px-6 py-8">
+      <main className="max-w-7xl mx-auto px-6 py-8">
         {hasSlides ? (
-          <div className="h-[calc(100vh-200px)]">
-            <SlideViewer />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-160px)]">
+            {/* Slides - 2/3 width */}
+            <div className="lg:col-span-2">
+              <SlideViewer />
+            </div>
+            {/* Transcript - 1/3 width */}
+            <div className="lg:col-span-1">
+              <TranscriptPanel />
+            </div>
           </div>
         ) : (
           <div className="max-w-xl mx-auto">
