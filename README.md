@@ -37,6 +37,7 @@ npm run dev
 - React 19 + TypeScript
 - Vite
 - Tailwind CSS v4
+- Zustand (state management)
 - Vitest + React Testing Library
 
 ## Development
