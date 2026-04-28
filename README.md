@@ -37,11 +37,13 @@ npm run dev
 - React 19 + TypeScript
 - Vite
 - Tailwind CSS v4
+- Zustand (state management)
 - Vitest + React Testing Library
 
 ## Development
 
 ```bash
+npm run build         # Type-check and build for production
 npm test              # Run tests
 npm run test:watch    # Watch mode
 npm run test:coverage # Coverage report
